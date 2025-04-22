@@ -1,0 +1,40 @@
+{"properties": [
+  {
+    "name": "spring.cloud.gateway.routers[0].id",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.gateway.routers[0].id'"
+  },
+  {
+    "name": "spring.cloud.gateway.routers[0].predicates[0]",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.gateway.routers[0].predicates[0]'"
+  }
+]} "description": "A description for 'spring.cloud.gateway.routers[0].id'"
+  },
+  {
+    "name": "spring.cloud.gateway.routers[0].uri",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.gateway.routers[0].uri'"
+  }
+]} "description": "A description for 'spring.cloud.gateway.routers[0].id'"
+  },
+  {
+    "name": "spring.cloud.gateway.routers[0].id",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.gateway.routers[0].id'"
+  }
+]} "description": "A description for 'spring.cloud.gateway.routers[0].id'"
+  },
+  {
+    "name": "spring.cloud.gateway.routers[0].id",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.gateway.routers[0].id'"
+  }
+]} "description": "A description for 'spring.cloud.gateway.routers[0].id'"
+  },
+  {
+    "name": "spring.cloud.gateway.routers[0].id",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.gateway.routers[0].id'"
+  }
+]}
