@@ -21,7 +21,12 @@ jobs:
         java-version: 21
         distribution: 'temurin'
 
-    # Step 3: Build and package each microservice
+     # Step 3: Ensure mvnw scripts are executable
+    - name: Set Executable Permissions for mvnw
+      run: |
+        chmod +x */mvnw
+    
+    # Step 4: Build and package each microservice
     - name: Build Microservices
       run: |
         for service in Apigateway Category Order Payment Product Registry User; do
