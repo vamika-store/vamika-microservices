@@ -1,0 +1,47 @@
+name: Build and Deploy Microservices
+
+on:
+  pull_request:
+    paths:
+      - 'vm-microservices/**' # Trigger only when files in the microservices folder change
+
+jobs:
+  detect-changes:
+    name: Detect Changed Microservices
+    runs-on: ubuntu-latest
+    outputs:
+      changed-services: ${{ steps.set-output.outputs.changed-services }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Detect Changed Microservices
+        id: set-output
+        run: |
+          CHANGED_SERVICES=$(git diff --name-only ${{ github.base_ref }} ${{ github.head_ref }} | grep "vm-microservices/" | cut -d'/' -f2 | sort | uniq)
+          echo "Changed services: $CHANGED_SERVICES"
+          echo "::set-output name=changed-services::${CHANGED_SERVICES}"
+
+  build-and-deploy:
+    needs: detect-changes
+    name: Build and Deploy Microservices
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: ${{ fromJson(needs.detect-changes.outputs.changed-services) }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Display Microservice Name
+        run: echo "Building and deploying microservice: ${{ matrix.service }}"
+
+      - name: Build Microservice
+        run: |
+          cd microservices/${{ matrix.service }}
+          ./build.sh # Replace with your actual build command
+
+      - name: Deploy Microservice
+        run: |
+          cd microservices/${{ matrix.service }}
+          ./deploy.sh # Replace with your actual deploy command
