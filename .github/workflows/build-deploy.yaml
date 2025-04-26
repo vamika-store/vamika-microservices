@@ -3,7 +3,7 @@ name: Build and Deploy Microservices
 on:
   pull_request:
     paths:
-      - 'vm-microservices/**' # Trigger only when files in the microservices folder change
+      - 'vamika-microservices/**' # Trigger only when files in the microservices folder change
 
 jobs:
   detect-changes:
@@ -18,7 +18,7 @@ jobs:
       - name: Detect Changed Microservices
         id: set-output
         run: |
-          CHANGED_SERVICES=$(git diff --name-only ${{ github.base_ref }} ${{ github.head_ref }} | grep "vm-microservices/" | cut -d'/' -f2 | sort | uniq)
+          CHANGED_SERVICES=$(git diff --name-only ${{ github.base_ref }} ${{ github.head_ref }} | grep "vamika-microservices/" | cut -d'/' -f2 | sort | uniq)
           echo "Changed services: $CHANGED_SERVICES"
           echo "::set-output name=changed-services::${CHANGED_SERVICES}"
 
@@ -38,10 +38,10 @@ jobs:
 
       - name: Build Microservice
         run: |
-          cd microservices/${{ matrix.service }}
+          cd vamika-microservices/${{ matrix.service }}
           ./build.sh # Replace with your actual build command
 
       - name: Deploy Microservice
         run: |
-          cd microservices/${{ matrix.service }}
+          cd vamika-microservices/${{ matrix.service }}
           ./deploy.sh # Replace with your actual deploy command
